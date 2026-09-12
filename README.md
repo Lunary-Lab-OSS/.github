@@ -31,7 +31,7 @@ Local LLM inference strategies for the same stack:
   GPU needed to run the suite
 - CI runs ruff lint plus the full test matrix on Python 3.12 and 3.13
 - Pre-commit hooks include a secrets scan on every commit
-- MIT licensed
+- GPL-3.0 licensed: use and build on them freely, keep derivatives open
 
 ## Why this exists
 
