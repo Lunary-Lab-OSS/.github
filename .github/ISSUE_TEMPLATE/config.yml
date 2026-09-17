@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security reports
+    url: https://github.com/Lunary-Lab-OSS/signal-local-llm/security/advisories/new
+    about: Report vulnerabilities privately — please do not open public issues for security reports.
