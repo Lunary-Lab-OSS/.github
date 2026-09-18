@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security reporting policy
+    url: https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/SECURITY.md
+    about: Check reporting availability first. Never disclose vulnerabilities in public issues.
