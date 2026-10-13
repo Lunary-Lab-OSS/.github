@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible problem with documented behaviour.
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For suspected vulnerabilities, read the affected repository's Security policy.
+        Do not include security-sensitive details, secrets, or personal content here.
+  - type: dropdown
+    id: repository
+    attributes:
+      label: Repository
+      description: Choose the repository that contains the affected behavior.
+      options:
+        - signal-asr-strategies
+        - signal-local-llm
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Give the exact version or commit in the selected repository.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include a minimal example and relevant configuration, with secrets removed.
+    validations:
+      required: true
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Expected and actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, backend, dependency profile, and CPU or GPU.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs
+      description: Remove tokens, prompts, transcripts, and other private data.
+      render: text
