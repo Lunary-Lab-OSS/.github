@@ -1,49 +1,59 @@
 # Lunary Lab OSS
 
-Libraries for a local, voice-driven coding stack.
+Open-source building blocks for a local, voice-driven AI coding assistant.
+
+The goal is a fast assistant that can listen, think, and write code in real
+time on consumer hardware, with no cloud dependency. These libraries are the
+reusable pieces of that stack: clean interfaces for speech recognition and
+local LLM inference.
 
 ## Repositories
 
-- [signal-asr-strategies](https://github.com/Lunary-Lab-OSS/signal-asr-strategies):
-  speech-recognition strategies and a local transcription server. The Linux
-  CPU integration track exercises sherpa-onnx and the container using
-  synthesized espeak-ng speech, not human recordings.
-- [signal-local-llm](https://github.com/Lunary-Lab-OSS/signal-local-llm):
-  local model loading, generation, and intent routing. Its Linux CPU
-  integration track uses Transformers with Qwen/Qwen2.5-0.5B-Instruct at
-  pinned revision `7ae557604adf67be50417f59c2c2f167def9a775`.
+### [signal-asr-strategies](https://github.com/Lunary-Lab-OSS/signal-asr-strategies)
 
-## Limits and verification
+Cross-platform speech recognition behind one strategy interface.
 
-The ASR server limits uploads and decoded audio and bounds admission to
-decode/inference work. Native inference and model loading are not generally
-interruptible; admission deadlines are not hard execution deadlines or RAM
-guarantees. Non-loopback access requires external authentication and network
-controls.
+- WhisperKit (Core ML / Apple Neural Engine) on macOS
+- sherpa-onnx with NVIDIA Parakeet TDT on Linux, WSL2, and CUDA
+- faster-whisper (CTranslate2) as a portable CPU/GPU option
+- OpenAI-compatible local transcription server with streaming upload caps,
+  decode budgets, and bounded admission control
+- Non-root Docker image, exercised end to end in CI
 
-Both repositories define offline unit tests, coverage gates, lint/format,
-typechecks, build/import checks, and dependency audits in CI. Each repository
-ties compatibility claims to its recorded checks. Backend seams retain
-behavior across platform variants, while Linux CPU integration executes the
-model and container paths end to end; validation performed in earlier
-environments remains useful evidence when its commands and revisions are
-recorded. Consult each repository's compatibility evidence for the exact
-coverage supplied for a target backend or device.
+### [signal-local-llm](https://github.com/Lunary-Lab-OSS/signal-local-llm)
 
-NeMo and vLLM integrations are currently unsupported. Matrix Factorization
-routing is disabled; SOTA routing requires a trained compatible checkpoint
-and a locally cached backbone. Consult each repository's README for supported
-dependency profiles and migration constraints.
+Local LLM inference and routing for the same stack.
 
-Both libraries are licensed GPL-3.0-or-later; see their license files for terms.
+- Transformers, ExLlamaV2, and MLX loaders with backend-first dispatch,
+  collision-resistant model caches, and resumable downloads
+- Cascading intent router (reflex patterns, difficulty estimation, and a
+  thinking-budget curve) with strict label parsing
+- RouteLLM-style model routing with a single-tower difficulty regressor and
+  provenance-checked checkpoints
+- Remote model code is opt-in and requires a pinned revision
 
-## Participation
+## Engineering practices
 
-Open ordinary bug reports and feature requests in the affected repository.
-See the [contribution guide](https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/CONTRIBUTING.md)
-for repository-specific local checks.
+Every pull request in both libraries runs:
 
-Do not post vulnerabilities publicly. Read the
-[security policy](https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/SECURITY.md):
-private vulnerability reporting is currently disabled, and no alternate
-confidential reporting route is published.
+- ruff lint and format checks, plus blocking mypy typechecks
+- the full offline unit suite on Python 3.12 and 3.13 with enforced coverage
+  gates (no model downloads, no GPU required)
+- wheel and sdist builds with out-of-tree import checks
+- `pip-audit` dependency audits of every locked runtime profile
+- a Linux integration track against real models: Qwen2.5-0.5B-Instruct for
+  LLM inference, and sherpa-onnx speech recognition through the Docker image
+  for ASR
+
+Dependencies are locked with [uv](https://docs.astral.sh/uv/), and heavy
+backends are tested through injectable seams so the unit suites stay fast and
+deterministic.
+
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/CONTRIBUTING.md).
+Bug reports and feature requests are welcome as issues in the relevant
+repository. Report security issues privately as described in
+[SECURITY.md](https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/SECURITY.md).
+
+Both libraries are licensed GPL-3.0-or-later.

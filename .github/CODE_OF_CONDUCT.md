@@ -3,16 +3,16 @@
 ## Our pledge
 
 Everyone participating in these projects is expected to keep discussions
-respectful and constructive. These are personal open-source projects
-shared in the spirit of useful software; keep it welcoming.
+respectful, constructive, and welcoming.
 
 ## Our standards
 
 Examples of behaviour that contributes to a positive environment:
 
-- Assuming good faith and reading the README/docs before filing issues.
+- Assuming good faith and reading the documentation before filing issues.
 - Giving precise, reproducible bug reports.
-- Respecting maintainer time; PRs that follow CONTRIBUTING.md move fastest.
+- Respecting maintainer time; pull requests that follow CONTRIBUTING.md
+  move fastest.
 
 Examples of unacceptable behaviour:
 
@@ -22,15 +22,11 @@ Examples of unacceptable behaviour:
 
 ## Enforcement
 
-No confidential conduct-reporting route is available in these public
-repositories today. Do not report conduct incidents as security issues and
-do not post incident details in public issues or discussions; GitHub
-security advisories are reserved for vulnerabilities.
-
-Maintainers may remove content or restrict participation for violations.
-If a report becomes available, the maintainers will review it privately and
-may edit or remove content or restrict participation.
+Maintainers may edit or remove content and restrict participation in
+response to violations. To report a conduct concern, contact the maintainers
+privately through GitHub rather than posting details in a public issue.
 
 ## Attribution
 
-This policy adapts common open-source community guidelines.
+This policy is adapted from common open-source community guidelines,
+including the [Contributor Covenant](https://www.contributor-covenant.org/).

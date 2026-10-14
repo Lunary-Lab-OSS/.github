@@ -48,22 +48,21 @@ That track requires `ffmpeg`, `espeak-ng`, and Docker; speech fixtures are
 synthesized, not human recordings. LLM integration uses
 `uv sync --locked --group dev --extra cpu --extra transformers`; see its
 [CI workflow](https://github.com/Lunary-Lab-OSS/signal-local-llm/blob/main/.github/workflows/ci.yml)
-for the model, cache, and skip-rejection checks. Neither track establishes
-CUDA or native Windows/macOS hardware support.
+for the model, cache, and skip-rejection checks.
 
 ## Pull requests
 
 - Keep changes focused; use conventional titles such as `fix: ...`.
 - Add regression tests that assert the intended result, not just absence of
   crashes.
-- Keep unsupported configurations explicit; do not add silent fallbacks.
+- Fail loudly on unsupported configurations rather than adding silent
+  fallbacks.
 - Update documentation when behaviour or dependency profiles change.
 - Run the applicable checks above and consult the affected repository's
   current workflow for build/import, integration, and dependency-audit
   requirements.
-- Do not run these commands in this organization-default repository; it
-  contains no executable project. Community-file changes are reviewed as
-  Markdown and YAML.
+- Changes to this organization-defaults repository are Markdown and YAML
+  only and need no local checks.
 
 ## Reporting
 
