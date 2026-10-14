@@ -2,4 +2,4 @@ blank_issues_enabled: true
 contact_links:
   - name: Security policy
     url: https://github.com/Lunary-Lab-OSS/.github/blob/main/.github/SECURITY.md
-    about: Read availability and limits first. Never disclose vulnerabilities in public issues.
+    about: Report vulnerabilities privately. Never disclose them in public issues.
